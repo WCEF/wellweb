@@ -364,10 +364,50 @@
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->
+<!--                           
+$data = array(
+    'userID'      => 'a7664093-502e-4d2b-bf30-25a2b26d6021',
+    'itemKind'    => 0,
+    'value'       => 1,
+    'description' => 'Boa saudaÁ„o.',
+    'itemID'      => '03e76d0a-8bab-11e0-8250-000c29b481aa'
+);
+
+$json = json_encode($data);
+
+$client = new Zend_Http_Client($uri);
+$client->setRawData($json, 'application/json')->request('POST');
+
+data: JSON.stringify({ "command": "on" }),
+-->
+
+
+<script>
+    $('#json').click(function(){ 
+      var API = "http://13.92.139.206:8000/api/services/cryptocurrency/v1/wallets/transfer";
+      $.getJSON( API, 
+        {
+          "body": {
+            "from": "03e657ae71e51be60a45b4bd20bcf79ff52f0c037ae6da0540a0e0066132b472",
+            "to": "d1e877472a4585d515b13f52ae7bfded1ccea511816d7772cb17e1ab20830819",
+            "amount": "10",
+            "seed": "12623766328194547469"
+          },
+          "network_id": 0,
+          "protocol_version": 0,
+          "service_id": 1,
+          "message_id": 2,
+          "signature": "2c5e9eee1b526299770b3677ffd0d727f693ee181540e1914f5a84801dfd410967fce4c22eda621701c2b9c676ed62bc48df9c973462a8514ffb32bec202f103"
+        },
+        function(data) {
+            alert(data);         
+          }); 
+</script>
+
                             <div class="well">
                                 <h4>Billing submit</h4>
                                 <p> Ready to settle all the transactions <!--a target="_blank" href="https://datatables.net/">https://datatables.net/</a-->.</p>
-                                <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://datatables.net/">Submit</a>
+                                <a class="btn btn-default btn-lg btn-block" target="_blank" id="json" >Submit</a>
                             </div>
                         </div>
                         <!-- /.panel-body -->
